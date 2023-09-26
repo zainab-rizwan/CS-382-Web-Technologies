@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hangman Game</title>
+</head>
+<body>
+    <h1>Hangman Game</h1>
+    <p id="word"></p>
+    <p id="guesses"></p>
+    <p id="guessedLetters"></p>
+    <p id="wrongLetters"></p>
+    <button onclick="NewGame()">New Game</button>
+    <input type="text" id="guessInput" maxlength="1" style="margin-top: 15px;">
+    <script>
+        const words = ["game","blame","new"]; 
+        const MaxGuesses = 6; 
+        let wordToGuess;
+        let GuessedLetters = [];
+        let remainingGuesses;
+        let wrongLetters = [];
+        
+        function NewGame() {
+            wordToGuess = words[Math.floor(Math.random() * words.length)];
+            GuessedLetters = [];
+            remainingGuesses = MaxGuesses;
+            wrongLetters = [];
+            
+            let wordDisplay = "";
+            for (let i = 0; i < wordToGuess.length; i++) {
+                wordDisplay += "-";
+            }
+            document.getElementById("word").innerHTML = wordDisplay;
+            
+            document.getElementById("guesses").innerHTML = "Guesses remaining: " + remainingGuesses;
+            document.getElementById("wrongLetters").innerHTML = "Wrong letters: " + wrongLetters.join(", ");
+        }
+        
+        function guessLetter() {
+            let letter = document.getElementById("guessInput").value;
+            document.getElementById("guessInput").value = "";
+            
+            if (GuessedLetters.includes(letter) || wrongLetters.includes(letter)) {
+                alert("You already guessed that letter!");
+                return;
+            }
+            
+            GuessedLetters.push(letter);          
+            document.getElementById("guessedLetters").innerHTML = "Guessed letters: " + GuessedLetters.join(", ");
+            
+            if (wordToGuess.includes(letter)) {
+                let wordDisplay = "";
+                for (let i = 0; i < wordToGuess.length; i++) {
+                    if (GuessedLetters.includes(wordToGuess[i])) {
+                        wordDisplay += wordToGuess[i];
+                    } else {
+                        wordDisplay += "-";
+                    }
+                }
+                document.getElementById("word").innerHTML = wordDisplay;
+                
+                if (wordDisplay === wordToGuess) {
+                    alert("You win!");
+                }
+            } else {
+                remainingGuesses--;
+                
+                document.getElementById("guesses").innerHTML = "Guesses remaining: " + remainingGuesses;
+                
+                wrongLetters.push(letter);
+                
+                document.getElementById("wrongLetters").innerHTML = "Wrong letters: " + wrongLetters.join(", ");
+
+                
+                if (remainingGuesses === 0) {
+                    alert("You lose! The word was " + wordToGuess);
+                }
+            }
+        }
+        
+        document.getElementById("guessInput").addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) { 
+                event.preventDefault();
+                guessLetter();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calcutor</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" class="rel" />
+    <script src="jquery-3.6.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#hide").click(function () {
+          // $("#cal").hide();
+          $("#cal").fadeOut();
+        });
+        $("#show").click(function () {
+          $("#cal").fadeIn();
+          $("#cal").show();
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container d-flex justify-content-center pt-5">
+      <button id="hide" class="btn btn-hide btn-primary">Hide</button>
+
+      <button id="show" class="btn btn-hide btn-primary">Show</button>
+    </div>
+    <div class="container d-flex justify-content-center p-5">
+      <div class="calculator" id="cal">
+        <h1>Calculator</h1>
+        <input class="display" type="text" id="result" readonly />
+        <table>
+          <tr>
+            <td><button class="btn" onclick="updateResult('7')">7</button></td>
+            <td><button class="btn" onclick="updateResult('8')">8</button></td>
+            <td><button class="btn" onclick="updateResult('9')">9</button></td>
+            <td>
+              <button class="btn operator" onclick="updateResult('+')">
+                +
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td><button class="btn" onclick="updateResult('4')">4</button></td>
+            <td><button class="btn" onclick="updateResult('5')">5</button></td>
+            <td><button class="btn" onclick="updateResult('6')">6</button></td>
+            <td>
+              <button class="btn operator" onclick="updateResult('-')">
+                -
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td><button class="btn" onclick="updateResult('1')">1</button></td>
+            <td><button class="btn" onclick="updateResult('2')">2</button></td>
+            <td><button class="btn" onclick="updateResult('3')">3</button></td>
+            <td>
+              <button class="btn operator" onclick="updateResult('*')">
+                *
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td><button class="btn" onclick="updateResult('0')">0</button></td>
+
+            <td>
+              <button class="btn clear" onclick="clearResult()">C</button>
+            </td>
+
+            <td>
+              <button class="btn equals" onclick="calculateResult()">=</button>
+            </td>
+            <td>
+              <button class="btn operator" onclick="updateResult('/')">
+                /
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <script src="js/default-assets/active.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+      crossorigin="anonymous"
+    ></script>
+    <script src="app.js"></script>
+  </body>
+</html>
